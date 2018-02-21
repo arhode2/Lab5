@@ -9,8 +9,29 @@
  */
 public class Bank {
 
-    public String bankName;
+    /**
+     * String variable for the name of the bank.
+     */
+    private String bankName;
 
+    /**
+     * bankName getter.
+     * @return bankName
+     */
+    public String getBankName() {
+        return this.bankName;
+    }
+
+    /**
+     * bankName setter.
+     * @param setBankName the new name of the bank.
+     */
+    public void setBankName(final String setBankName) {
+        this.bankName = setBankName;
+    }
+    /**
+     * constructor for Bank that initializes bankName.
+     */
     public Bank() {
         bankName = "Illini Bank";
     }
@@ -29,6 +50,15 @@ public class Bank {
         /*
          * Implement this function
          */
+        if (amount <= 0) {
+            return false;
+        }
+        if (bankAccount.getAccountBalance() - amount < 0) {
+            return false;
+        } else {
+            bankAccount.setAccountBalance(bankAccount.getAccountBalance() - amount);
+            return true;
+        }
     }
 
     /**
@@ -45,6 +75,11 @@ public class Bank {
         /*
          * Implement this function
          */
+        if (amount <= 0) {
+            return false;
+        }
+        bankAccount.setAccountBalance(bankAccount.getAccountBalance() + amount);
+        return true;
     }
 
     /**
@@ -64,6 +99,15 @@ public class Bank {
         /*
          * Implement this function
          */
+        if (amount <= 0) {
+            return false;
+        }
+        if (source.getAccountBalance() < amount) {
+            return false;
+        }
+        source.setAccountBalance(source.getAccountBalance() - amount);
+        destination.setAccountBalance(destination.getAccountBalance() + amount);
+        return true;
     }
 
     /**
@@ -77,9 +121,31 @@ public class Bank {
         /*
          * Implement this function
          */
+        bankAccount.setOwnerName(name);
     }
 
-    public static int totalAccounts = 0;
+
+    /**
+     * keeps track of total accounts created.
+     */
+    private static int totalAccounts = 0;
+
+    /**
+     * getter for total accounts.
+     * @return number of accounts created.
+     */
+    public static int getTotalAccounts() {
+        return totalAccounts;
+    }
+
+    /**
+     * total Accounts setter.
+     * @param nAccounts the new number of accounts
+     */
+    public void int setTotalAccounts(final int nAccounts) {
+        this.totalAccounts = nAccounts;
+    }
+
     /**
      * Uses static variable to get number of bank accounts opened.
      *
@@ -89,6 +155,7 @@ public class Bank {
         /*
          * Implement this function
          */
+        return Bank.totalAccounts;
     }
 
     /**
